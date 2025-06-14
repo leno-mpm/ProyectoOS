@@ -18,5 +18,3 @@ void mensajeGanador();
 //Mensaje de que ha pérdido
 void mensajePerdedor();
 
-
-#endif
