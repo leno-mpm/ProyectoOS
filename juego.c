@@ -2,12 +2,8 @@
 #include<stdbool.h>
 #include "juego.h"
 
-int vidasUsadas=1;
-CHAR[]
 // Inicia el juego según el nivel seleccionado, gestiona intentos y pide pistas.
-void jugar (){
-
-};
+bool jugar ();
 
 // Genera un número aleatorio dentro del rango definido para el juego
 int generarNumeroAleatorio (int min, int max);
@@ -20,15 +16,6 @@ void mostrarPista (int secretNumber){
 
 	}
 }
-
-// PRGUTNA 
-//1 
-
-JUGAR(1)
-
-
-SITCHT(1) GENERAR ALEATRORIA(MIN,MAX)
-
 
 int numeroPista(char arreglo){
 	RANDOM n (0-10)
