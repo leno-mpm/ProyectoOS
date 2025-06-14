@@ -1,8 +1,8 @@
-**Proyecto: NumGuess Challenge**
+# **Proyecto: NumGuess Challenge**
 
 NumGuess Challenge es un juego de adivinanza de números desarrollado en C, donde el jugador debe descubrir un número secreto generado aleatoriamente dentro de un rango determinado según el nivel de dificultad seleccionado.
 
-✅ Sistema de niveles:
+## ✅ Sistema de niveles:
 
 Nivel Fácil (0-100): Pistas directas para principiantes.
 
@@ -11,12 +11,12 @@ Nivel Medio (0-500): Pistas menos obvias, mayor rango.
 Nivel Difícil (0-1000): Pistas crípticas, máximo desafío.
 
 
-✅ Límite de intentos:
+## ✅ Límite de intentos:
 
 Cada nivel tiene un número máximo de intentos para aumentar la dificultad.
 
 
-✅ Pistas inteligentes:
+## ✅ Pistas inteligentes:
 
 El juego ofrece ayudas según el nivel, como:
 
@@ -28,7 +28,7 @@ El juego ofrece ayudas según el nivel, como:
 
 "Es divisible por 3, 5, etc." (en niveles altos)
 
-✅ Estructura
+## ✅ Estructura
 
 ├── main.c            # Contiene la función principal y el flujo del juego
 
