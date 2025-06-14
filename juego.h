@@ -24,5 +24,6 @@ void mensajeGanador();
 //Mensaje de que ha pérdido
 void mensajePerdedor();
 
-
+//Verificar si el número tiene como mínimo 2 cifras (Porque hay pistas que necesitan saber esto antes de ejecutar)
+bool minimo2(int n);
 #endif
