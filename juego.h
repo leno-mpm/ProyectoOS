@@ -11,13 +11,13 @@
 #define NIVEL3_MAX 500
 
 // Inicia el juego según el nivel seleccionado, gestiona intentos y pide pistas.
-bool jugar (int min, int max);
+bool jugar(int min, int max);
 
 // Genera un número aleatorio dentro del rango definido para el juego
-int generarNumeroAleatorio ();
+int generarNumeroAleatorio();
 
 // Muestra una pista aleatoria relacionada al número secreto
-void mostrarPista (int secretNumber);
+void mostrarPista(int secretNumber);
 
 //Mensaje de felicitaciones por ser ganador
 void mensajeGanador();

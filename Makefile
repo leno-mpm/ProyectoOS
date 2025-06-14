@@ -2,7 +2,7 @@ GCC = gcc
 COMP = juego.o main.o pistas.o
 
 programa: $(COMP) pistas.h juego.h
-	$(GCC) $(COMP) -o programa
+	$(GCC) $(COMP) -o programa -lm
 
 main.o: main.c
 	$(GCC) -c main.c

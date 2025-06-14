@@ -60,7 +60,7 @@ void cantidadDeCifras (int n){
 		cont++;
 		n=n/10;
 	}
-	printf("Pista - La cantidad de cifras que tiene tu numero es: %d" + cont);
+	printf("Pista - La cantidad de cifras que tiene tu numero es: %d", cont);
 }
 
 // Verifica si el número es primo o no
