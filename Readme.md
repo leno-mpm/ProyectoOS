@@ -4,11 +4,11 @@ NumGuess Challenge es un juego de adivinanza de números desarrollado en C, dond
 
 ## ✅ Sistema de niveles:
 
-Nivel Fácil (0-100): Pistas directas para principiantes.
+Nivel Fácil (0-50): Pistas directas para principiantes.
 
-Nivel Medio (0-500): Pistas menos obvias, mayor rango.
+Nivel Medio (0-100): Pistas menos obvias, mayor rango.
 
-Nivel Difícil (0-1000): Pistas crípticas, máximo desafío.
+Nivel Difícil (0-500): Pistas crípticas, máximo desafío.
 
 
 ## ✅ Límite de intentos:
