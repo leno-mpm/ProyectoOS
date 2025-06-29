@@ -60,34 +60,34 @@ void cantidadDeCifras (int n){
 		cont++;
 		n=n/10;
 	}
-	printf("Pista - La cantidad de cifras que tiene tu numero es: %d", cont);
+	printf("Pista - La cantidad de cifras que tiene tu numero es: %d\n", cont);
 }
 
 // Verifica si el número es primo o no
 void primo_noprimo (int n){
 	if(n<=1){
-		printf("Pista - El número no es primo");
+		printf("Pista - El número no es primo\n");
 	}else if(n==2){
-		printf("Pista - El número es primo");
+		printf("Pista - El número es primo\n");
 	}
 	else if(n%2==0){
-		printf("Pista - El número no es primo");
+		printf("Pista - El número no es primo\n");
 	}else{
 		int limite= (int) sqrt((double)n);
 		int i=3;
 		for(i; i<=limite; i+=2){
 			if(n%i==0){
-				printf("Pista - El número no es primo");
+				printf("Pista - El número no es primo\n");
 				return;
 			}
 		}
-		printf("Pista - El número es primo");
+		printf("Pista - El número es primo\n");
 	}
 }
 
 // Muestra en qué cifra termina el número (mínimo 2 cifras)
 void terminaEn (int n){
-	printf("Pista - El número termina en %d",n%10);
+	printf("Pista - El número termina en %d\n",n%10);
 }
 
 // Evalúa si el número está más cerca del mínimo, máximo o del centro del rango

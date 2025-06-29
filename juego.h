@@ -11,13 +11,22 @@
 #define NIVEL3_MAX 500
 
 // Inicia el juego según el nivel seleccionado, gestiona intentos y pide pistas.
-bool jugar(int min, int max);
+bool jugar(int max);
 
 // Genera un número aleatorio dentro del rango definido para el juego
-int generarNumeroAleatorio();
+int generarNumeroAleatorio(int max, int secretNumber);
 
 // Muestra una pista aleatoria relacionada al número secreto
-void mostrarPista(int secretNumber);
+void mostrarPista(int secretNumber, int max, int *tamanio, int arreglo[], int intento);
+
+// Valida si el numero para la pista es valido
+int numeroPista(int arreglo[], int *tamanio);
+
+//Actualiza si el numero no tiene  2 cifras
+void actualizar(int n, int arreglo[], int *tamanio);
+
+//Eliminar elementos de un arreglo
+int eliminarElemento(int arreglo[], int *tamanio, int posicion);
 
 //Mensaje de felicitaciones por ser ganador
 void mensajeGanador();

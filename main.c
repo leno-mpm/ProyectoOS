@@ -7,12 +7,24 @@ int main(){
     do
     {
         if (nivel == 1){
-            victoria = jugar(NIVEL1_MIN, NIVEL1_MAX);
+	    printf("Bienvenido al nivel 1!!!\nRango del numero a adivinar [0-50]\n");
+            victoria = jugar(NIVEL1_MAX);
+	    if(victoria){
+	    	printf("Felicidades pasaste el nivel 1!!!!\n");
+	    }
         }else if(nivel == 2){
-            victoria = jugar(NIVEL2_MIN, NIVEL2_MAX);
-        }else if (nivel == 3){
-            victoria = jugar(NIVEL3_MIN, NIVEL3_MAX);
-        }
+            printf("Bienvenido al nivel 2!!!\nRango del numero a adivinar [0-100]\n");
+	    victoria = jugar(NIVEL2_MAX);
+	    if(victoria){
+	    	printf("Felicidades pasaste el nivel 2!!!!\n");
+            }
+	}else if (nivel == 3){
+	    printf("Bienvenido al nivel 3!!!\nRango del numero a adivinar [0-500]\n");
+            victoria = jugar(NIVEL3_MAX);
+	    if(victoria){
+	    	printf("Felicidades pasaste el nivel 3!!!!\n");
+            }
+	}
         nivel++;
     } while (nivel != 4 && victoria);
     
