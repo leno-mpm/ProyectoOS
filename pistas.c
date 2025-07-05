@@ -1,71 +1,54 @@
 #include <stdio.h>
-#include <math.h>
 #include "pistas.h"
 
-
-//Indica si el intento actual es mayor, menor al nÔøΩmero secreto
-void mayor_menor(int secreto, int intento){
-	if(secreto < intento){
-		printf("El numero es menor a %d\n", intento);
-	}
-	if(secreto > intento){
-		printf("El numero es mayor a %d\n", intento);
-	}
-
+void mostrarMayorMenor(int secreto, int intento) {
+    if (intento > secreto)
+        printf("El n˙mero es menor que %d\n", intento);
+    else
+        printf("El n˙mero es mayor que %d\n", intento);
 }
 
-// Informa si el nÔøΩmero es par o impar
-void par_impar (int n) {
-	if(n % 2 == 0){
-		printf("El numero es par\n");
-	}else{
-		printf("El numero es impar\n");
-	}
+void mostrarParImpar(int n) {
+    if (n % 2 == 0)
+        printf("El n˙mero es par\n");
+    else
+        printf("El n˙mero es impar\n");
 }
 
-// Verifica si el nÔøΩmero es divisible para un nÔøΩmero elegido aleatoriamente
-void divisible (int n, int ndiv){
-	if(n % ndiv == 0){
-		printf("El numero es divisible para %d\n", ndiv);
-	}else{
-		printf("El numero no es divisible para %d\n", ndiv);
-	}
+void mostrarDivisible(int n, int div) {
+    if (n % div == 0)
+        printf("El n˙mero es divisible por %d\n", div);
+    else
+        printf("No es divisible por %d\n", div);
 }
 
-// Verifica si el nÔøΩmero es mÔøΩltiplo de un nÔøΩmero elegido aleatoriamente
-void multiplo (int n, int nmult){
-	if(n % nmult == 0){
-		printf("El numero es multiplo de %d\n", nmult);
-	}else{
-		printf("El numero no es multiplo de %d\n", nmult);
-	}
+void mostrarMultiplo(int n, int mult) {
+    if (mult != 0 && n % mult == 0)
+        printf("El n˙mero es m˙ltiplo de %d\n", mult);
+    else
+        printf("No es m˙ltiplo de %d\n", mult);
 }
 
-// Calcula la suma de los dÔøΩgitos del nÔøΩmero (mÔøΩnimo 2 cifras)
-void sumaDigito (int n){
-	int numero = n;
-	int sum = 0;
-	while(numero > 0){
-		sum = sum + (numero % 10);
-		numero = numero / 10;
-	}
-	
-	printf("La suma de sus digitos da %d\n", sum);
+void mostrarSumaDigitos(int n) {
+    int suma = 0;
+    while (n > 0) {
+        suma += n % 10;
+        n /= 10;
+    }
+    printf("La suma de los dÌgitos es: %d\n", suma);
 }
 
-// Indica cu√°ntas cifras tiene el n√∫mero, se valida que el int n, como m√≠nimo sean de dos cifras
-void cantidadDeCifras (int n){
-	int cont=0;
-	while(n!=0){
-		cont++;
-		n=n/10;
-	}
-	printf("Pista - La cantidad de cifras que tiene tu numero es: %d\n", cont);
+void mostrarCantidadCifras(int n) {
+    int count = 0;
+    do {
+        count++;
+        n /= 10;
+    } while (n > 0);
+    printf("Cantidad de cifras: %d\n", count);
 }
 
-// Verifica si el n√∫mero es primo o no
-void primo_noprimo (int n){
-	if (n <= 1) {
+void mostrarPrimo(int n) {
+    if (n <= 1) {
         printf("No es primo\n");
         return;
     }
@@ -78,20 +61,16 @@ void primo_noprimo (int n){
     printf("Es primo\n");
 }
 
-// Muestra en qu√© cifra termina el n√∫mero (m√≠nimo 2 cifras)
-void terminaEn (int n){
-	printf("Pista - El n√∫mero termina en %d\n",n%10);
+void mostrarUltimoDigito(int n) {
+    printf("El n˙mero termina en %d\n", n % 10);
 }
 
-// Eval√∫a si el n√∫mero est√° m√°s cerca del m√≠nimo, m√°ximo o del centro del rango
-void cercaniaRango(int n, int min, int max){
-	int cuarto = (max - min) / 4;
-	if (n <= min + cuarto) {
-		printf("El n√∫mero se encuentra m√°s cerca del m√≠nimo\n");
-	} else if (n >= max - cuarto) {
-		printf("El n√∫mero se encuentra m√°s cerca del m√°ximo\n");
-	} else {
-		printf("El n√∫mero se encuentra cerca del centro del rango\n");
-	}
+void mostrarCercaniaRango(int n, int min, int max) {
+    int cuarto = (max - min) / 4;
+    if (n <= min + cuarto)
+        printf("Cerca del mÌnimo\n");
+    else if (n >= max - cuarto)
+        printf("Cerca del m·ximo\n");
+    else
+        printf("Cerca del centro del rango\n");
 }
-

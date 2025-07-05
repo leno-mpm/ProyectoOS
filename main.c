@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include<stdbool.h>
 #include "juego.h"
 int main(){
     int nivel = 1;
-	bool victoria = true;
+	int victoria = 1;
     
     while(nivel<=3 && victoria){
         if (nivel == 1){
@@ -23,11 +22,11 @@ int main(){
 		}
     } 
     
-    if (victoria){
-        mensajeGanador();
-    }else{
-        mensajePerdedor();
-    }
+    if (victoria) {
+	    printf("¡Felicidades! Has ganado el juego.\n");
+	} else {
+	    printf("Has perdido. ¡Inténtalo otra vez!\n");
+	}
     
     return 0;
 }

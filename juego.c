@@ -1,124 +1,104 @@
-#include<stdio.h>
-#include<stdbool.h>
+#include <stdio.h>
 #include "juego.h"
 #include "pistas.h"
 
-unsigned int seed = 12345;
+int seed = 12345;
 
-// Inicia el juego segÃºn el nivel seleccionado, gestiona intentos y pide pistas.
-bool jugar (int max){
-	int secretNumber;
-	int tamanio = 8;
-	int intento = -1;
-	int arreglo[] = {1,3,4,5,6,7,8,9};
-	
-	do{
-		secretNumber = generarNumeroAleatorio(max, 0);
-	}while(secretNumber == 0);
-	
-	if (secreto < 10) {
-        eliminarPista(5);
-        eliminarPista(8);
+// Lista de pistas disponibles (global)
+int pistas_disponibles[8];
+int pistas_size = 8;
+
+// Reinicia las pistas para cada nivel
+void reiniciarPistas() {
+    int pistas_iniciales[] = {1, 3, 4, 5, 6, 7, 8, 9};
+    for (int i = 0; i < 8; i++) {
+        pistas_disponibles[i] = pistas_iniciales[i];
     }
-    
-	par_impar(secretNumber);
-	printf("Escribe tu respuesta: ");
-	scanf("%d",&intento);
-	
-	while(secretNumber != intento && tamanio !=0){
-		mostrarPista(secretNumber, max, &tamanio, arreglo, intento);
-		if(tamanio==0){
-			printf("Este es tu último intento!\n")
-		}
-		printf("Escribe tu respuesta: ");
-		scanf("%d",&intento);
-	}
-	
-	if(secretNumber == intento){
-		return true;
-	}else{
-		return false;
-	}
+    pistas_size = 8;
 }
 
-// Genera un nÃºmero aleatorio dentro del rango definido para el juego
-int generarNumeroAleatorio (int max, int secretNumber){
-	seed = seed + secretNumber;
-	seed = ((1664525 * seed + 1013904223) % 4294967296) % max;
-	return seed;
-}
+// Juega un nivel completo
+int jugar(int max) {
+    int secreto, intento = -1;
 
+    reiniciarPistas();
 
-// Muestra una pista aleatoria relacionada al nÃºmero secreto
-void mostrarPista (int secretNumber, int max, int *tamanio, int arreglo[], int intento){
-	int n = numeroPista(arreglo, tamanio);
-	int aleatorio = generarNumeroAleatorio(max, secretNumber);
-	switch(n){
-		case 1:
-			mayor_menor(secretNumber, intento);//
-			break;
-		case 3:
-			divisible(secretNumber, 2);
-			break;
-		case 4:
-			multiplo(secretNumber, aleatorio);//
-			break;
-		case 5:
-			sumaDigito(secretNumber);//
-			break;
-		case 6:
-			cantidadDeCifras(secretNumber);//
-			break;
-		case 7:
-			primo_noprimo(secretNumber);//
-			break;
-		case 8:
-			terminaEn(secretNumber);//
-			break;
-		case 9:
-			cercaniaRango(secretNumber, 0, max);//
-			break;
-	}
-}
+    // Genera un número secreto distinto de 0
+    do {
+        secreto = generarNumeroAleatorio(max, 0);
+    } while (secreto == 0);
 
-int numeroPista(int arreglo[], int *tamanio){
-	//RANDOM n (0-10)
-	int n;
-	int i;
-	int encuentra = 0;
-	//si lo encuentra, vuelve a buscar uno que no este
-	n = generarNumeroAleatorio(*tamanio, 0);
-	return eliminarElemento(arreglo, tamanio,n);
-}
-	
-
-//Eliminar elementos de un arreglo
-int eliminarElemento(int arreglo[], int *tamanio, int posicion) {
-    if (posicion >= 0 || posicion < *tamanio) {
-        int eliminado = arreglo[posicion];
-
-
-	    for (int i = posicion; i < *tamanio - 1; i++) {
-	        arreglo[i] = arreglo[i + 1];
-	    }
-	
-	    (*tamanio)--;
-	    return eliminado;
+    // Si el número tiene solo una cifra, eliminamos pistas no aplicables
+    if (secreto < 10) {
+        eliminarPista(5); // sumaDigitos
+        eliminarPista(8); // terminaEn
     }
-    return -1;
+
+    mostrarParImpar(secreto);
+
+    printf("Escribe tu respuesta: ");
+    scanf("%d", &intento);
+
+    // Mientras no acierte y queden pistas
+    while (intento != secreto && pistas_size > 0) {
+        mostrarPista(secreto, max, intento);
+        printf("Escribe tu respuesta: ");
+        scanf("%d", &intento);
+    }
+
+    // Si usó todas las pistas y aún no adivina, le damos un intento final
+    if (intento != secreto && pistas_size == 0) {
+        printf("Último intento sin pista...\n");
+        printf("Escribe tu respuesta final: ");
+        scanf("%d", &intento);
+    }
+
+    return (intento == secreto) ? 1 : 0;
 }
 
-
-//Mensaje de felicitaciones por ser ganador
-void mensajeGanador(){
-	printf("Felicidades, Â¡HAZ GANADO!\n");
+// Genera un número pseudoaleatorio en el rango [1, max)
+int generarNumeroAleatorio(int max, int offset) {
+    seed += offset;
+    seed = ((1664525 * seed + 1013904223) % 4294967296) % max;
+    return (seed == 0) ? 1 : seed;
 }
 
-//Mensaje de que ha pÃ©rdido
-void mensajePerdedor(){
-	printf("LÃ¡stima, Â¡INTÃ‰NTALO OTRA VEZ!\n");
+// Muestra una pista aleatoria
+void mostrarPista(int secreto, int max, int intento) {
+    int index = generarNumeroAleatorio(pistas_size, 0);
+    int tipo = eliminarPistaPorIndice(index);
+    int aleatorio = generarNumeroAleatorio(max, secreto);
+
+    if (tipo == 1) mostrarMayorMenor(secreto, intento);
+    else if (tipo == 3) mostrarDivisible(secreto, 2);
+    else if (tipo == 4) mostrarMultiplo(secreto, aleatorio);
+    else if (tipo == 5) mostrarSumaDigitos(secreto);
+    else if (tipo == 6) mostrarCantidadCifras(secreto);
+    else if (tipo == 7) mostrarPrimo(secreto);
+    else if (tipo == 8) mostrarUltimoDigito(secreto);
+    else if (tipo == 9) mostrarCercaniaRango(secreto, 1, max);
 }
 
+// Elimina una pista por su valor (ej. pista 5 o 8 si el número < 10)
+void eliminarPista(int valor) {
+    for (int i = 0; i < pistas_size; i++) {
+        if (pistas_disponibles[i] == valor) {
+            for (int j = i; j < pistas_size - 1; j++) {
+                pistas_disponibles[j] = pistas_disponibles[j + 1];
+            }
+            pistas_size--;
+            break;
+        }
+    }
+}
 
-
+// Elimina una pista por índice aleatorio y devuelve su valor
+int eliminarPistaPorIndice(int index) {
+    int valor = pistas_disponibles[index];
+    for (int i = index; i < pistas_size - 1; i++) {
+        pistas_disponibles[i] = pistas_disponibles[i + 1];
+    }
+    pistas_size--;
+    return valor;
+}
 
