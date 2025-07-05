@@ -15,22 +15,28 @@ bool jugar (int max){
 	do{
 		secretNumber = generarNumeroAleatorio(max, 0);
 	}while(secretNumber == 0);
-	actualizar(secretNumber, arreglo, &tamanio);
+	
+	if (secreto < 10) {
+        eliminarPista(5);
+        eliminarPista(8);
+    }
+    
 	par_impar(secretNumber);
 	printf("Escribe tu respuesta: ");
 	scanf("%d",&intento);
 	
 	while(secretNumber != intento && tamanio !=0){
 		mostrarPista(secretNumber, max, &tamanio, arreglo, intento);
+		if(tamanio==0){
+			printf("Este es tu �ltimo intento!\n")
+		}
 		printf("Escribe tu respuesta: ");
 		scanf("%d",&intento);
 	}
 	
 	if(secretNumber == intento){
 		return true;
-	}
-	
-	if(tamanio == 9){
+	}else{
 		return false;
 	}
 }
@@ -85,14 +91,6 @@ int numeroPista(int arreglo[], int *tamanio){
 	return eliminarElemento(arreglo, tamanio,n);
 }
 	
-
-//Verificar si el número tiene como mínimo 2 cifras (Porque hay pistas que necesitan saber esto antes de ejecutar)
-void actualizar(int n, int arreglo[], int *tamanio){
-        if((n/10)==0){
-        	eliminarElemento(arreglo, tamanio,5);
-        	eliminarElemento(arreglo, tamanio,8);
-        }
-}
 
 //Eliminar elementos de un arreglo
 int eliminarElemento(int arreglo[], int *tamanio, int posicion) {

@@ -65,24 +65,17 @@ void cantidadDeCifras (int n){
 
 // Verifica si el número es primo o no
 void primo_noprimo (int n){
-	if(n<=1){
-		printf("Pista - El número no es primo\n");
-	}else if(n==2){
-		printf("Pista - El número es primo\n");
-	}
-	else if(n%2==0){
-		printf("Pista - El número no es primo\n");
-	}else{
-		int limite= (int) sqrt((double)n);
-		int i=3;
-		for(i; i<=limite; i+=2){
-			if(n%i==0){
-				printf("Pista - El número no es primo\n");
-				return;
-			}
-		}
-		printf("Pista - El número es primo\n");
-	}
+	if (n <= 1) {
+        printf("No es primo\n");
+        return;
+    }
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            printf("No es primo\n");
+            return;
+        }
+    }
+    printf("Es primo\n");
 }
 
 // Muestra en qué cifra termina el número (mínimo 2 cifras)
